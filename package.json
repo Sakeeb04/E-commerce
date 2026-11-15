@@ -1,0 +1,14 @@
+{
+  "name": "modern-ecommerce-platform",
+  "version": "1.0.0",
+  "description": "Modern & Responsive E-Commerce Web & React Native Mobile UI with TypeScript",
+  "main": "js/app.js",
+  "scripts": {
+    "build:ts": "tsc -p tsconfig.json && node build-bundle.js",
+    "watch:ts": "tsc -w -p tsconfig.json",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

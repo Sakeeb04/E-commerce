@@ -1,0 +1,40 @@
+import { CartItem, Product, Order } from './types.js';
+type StateListener = () => void;
+declare class Store {
+    cart: CartItem[];
+    wishlist: string[];
+    activeView: 'products' | 'cart' | 'checkout' | 'orders' | 'profile' | 'tracking' | 'wishlist';
+    selectedProduct: Product | null;
+    trackingOrder: Order | null;
+    promoCode: string;
+    discountPercent: number;
+    private listeners;
+    constructor();
+    subscribe(listener: StateListener): () => void;
+    private notify;
+    private saveToStorage;
+    private loadFromStorage;
+    addToCart(product: Product, quantity?: number, color?: string, size?: string): void;
+    updateCartQuantity(index: number, quantity: number): void;
+    removeFromCart(index: number): void;
+    clearCart(): void;
+    applyPromo(code: string): {
+        success: boolean;
+        message: string;
+    };
+    getCartSubtotal(): number;
+    getCartDiscount(): number;
+    getCartTax(): number;
+    getCartShipping(): number;
+    getCartTotal(): number;
+    getCartCount(): number;
+    toggleWishlist(productId: string): boolean;
+    isInWishlist(productId: string): boolean;
+    removeFromWishlist(productId: string): void;
+    clearWishlist(): void;
+    setView(view: 'products' | 'cart' | 'checkout' | 'orders' | 'profile' | 'tracking' | 'wishlist'): void;
+    setSelectedProduct(product: Product | null): void;
+    setTrackingOrder(order: Order | null): void;
+}
+export declare const store: Store;
+export {};
